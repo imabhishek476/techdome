@@ -13,7 +13,7 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 // Routes
