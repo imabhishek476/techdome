@@ -1,0 +1,42 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          echo "PORT=${{ vars.PORT }}" >> .env
+          echo "MONGO_URI=${{ vars.MONGO_URI }}" >> .env
+          echo "JWT_SECRET=${{ vars.JWT_SECRET }}" >> .env
+          echo "MAX_LOAN_AMOUNT=${{ vars.MAX_LOAN_AMOUNT }}" >> .env
+          echo "MIN_LOAN_AMOUNT=${{ vars.MIN_LOAN_AMOUNT }}" >> .env
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg PORT=${{ vars.PORT }} \
+            --build-arg MONGO_URI=${{ vars.MONGO_URI }} \
+            --build-arg JWT_SECRET=${{ vars.JWT_SECRET }} \
+            -t imabhishek476/loan-app-server:latest .
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish image to docker hub
+        run: docker push imabhishek476/loan-app-server:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull imabhishek476/loan-app-server:latest
+      - name: Delete existing container
+        run: docker rm -f loan-app-server || true
+      - name: Run new container
+        run: docker run -d -p 5000:5000 --name loan-app-server imabhishek476/loan-app-server:latest
+      
