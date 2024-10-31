@@ -84,7 +84,7 @@ mini-loan-app/
 
 ## 6. API Documentation (Postman Collection)
 
-[Postman Collection](https://www.postman.com/xyz)
+```./server/Mini-loan-app.postman_collection.json```
 
 ## 7. CI/CD Pipeline
 
