@@ -22,8 +22,8 @@ app.use(`${constants.API_PREFIX}/loans`, require('./routes/loan'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    logger.error(err.stack);
-    res.status(500).send('Something broke!');
+    // logger.error(err.stack);
+    res.status(500).send('Something broke!', err);
 });
 
 // Start server
