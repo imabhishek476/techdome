@@ -18,7 +18,7 @@ export default function Login() {
       const { token, user } = response.data;
       console.log('Hey:', token, user);
       
-      Cookies.set('HEllo', token, { expires: 1 });
+      Cookies.set('token', token, { expires: 1 });
       
       login(user);
       
