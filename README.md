@@ -30,6 +30,7 @@
 
 ## 2. Project
 
+```bash
 mini-loan-app/
 ├── client/ # Frontend React application
 │ ├── src/
@@ -41,16 +42,18 @@ mini-loan-app/
 │ │ └── utils/ # Helper functions
 │ └── tests/
 ├── server/
-│ ├── controllers/ 
+│ ├── controllers/
 │ ├── middleware/
 │ ├── models/ # Mongoose models
 │ ├── routes/
 │ └── tests/ # Backend tests
 └── docs/ # Documentation
+```
 
 ## 3.Environment Variables
 
 - Create a .env file in the server directory and add the following variables:
+
   - PORT
   - MONGO_URI
   - JWT_SECRET
@@ -61,7 +64,6 @@ mini-loan-app/
 - Create a .env file in the client directory and add the following variables:
   - VITE_API_URL (should be same as server url for example http://localhost:5000)
 
-
 ## 4. Installation Process
 
 ```bash
@@ -70,6 +72,7 @@ mini-loan-app/
   cd ../server
   npm install
 ```
+
 ## 5. Running the application
 
 ```bash
@@ -80,8 +83,8 @@ mini-loan-app/
 ```
 
 ## 6. API Documentation (Postman Collection)
-[Postman Collection](https://www.postman.com/xyz)
 
+[Postman Collection](https://www.postman.com/xyz)
 
 ## 7. CI/CD Pipeline
 
