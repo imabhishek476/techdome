@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const API_URL = import.meta.env.VITE_API_URL || 'https://techdome-yw9w.onrender.com';
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL+"/api",
 });
 
 api.interceptors.request.use((config) => {
